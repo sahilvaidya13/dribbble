@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "MonaSans-Regular";
+  src: url("./assets/fonts/MonaSans-Regular.ttf");
+}
+@font-face {
+  font-family: "MonaSans-Med";
+  src: url("./assets/fonts/MonaSans-Medium.ttf");
+}
+@font-face {
+  font-family: "Hel-Med";
+  src: url("./assets/fonts/HelveticaNeueMedium.otf");
+}
+@font-face {
+  font-family: "Hel-Thin";
+  src: url("./assets/fonts/HelveticaNeueThin.otf");
+}
+@font-face {
+  font-family: "Hel-Black";
+  src: url("./assets/fonts/HelveticaNeueBlack.otf");
+}
+@font-face {
+  font-family: "Hel-Bold";
+  src: url("./assets/fonts/HelveticaNeueBold.otf");
+}
+@font-face {
+  font-family: "MonaSans-Bold";
+  src: url("./assets/fonts/MonaSans-Bold.ttf");
+}
+@font-face {
+  font-family: "MonaSans-Extra";
+  src: url("./assets/fonts/MonaSans-ExtraBold.ttf");
+}
+@font-face {
+  font-family: "goodline";
+  src: url("./assets/fonts/Goodline.ttf");
+}
