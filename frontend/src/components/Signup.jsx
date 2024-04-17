@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import img_asset from "../assets/3d_asset.jpg";
 import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 const Signup = () => {
   const navigate = useNavigate();
   const [tick, setTick] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [errorMessage, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     username: "",
@@ -25,7 +27,8 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("clicked");
+    setLoading(true);
     try {
       const response = await fetch(
         "https://dribbble-uyit.onrender.com/api/signup",
@@ -39,11 +42,14 @@ const Signup = () => {
       );
 
       const value = await response.json();
-
+      console.log(value);
       if (response.alreadyExists) {
+        setLoading(false);
         setMessage(response.message);
       }
       if (!response.alreadyExists) {
+        setLoading(false);
+
         localStorage.setItem("token", value.token);
         navigate("/user-profile");
       } else {
@@ -64,6 +70,7 @@ const Signup = () => {
   return (
     <div>
       <div className="main w-screen  h-screen flex max-sm:flex-col">
+        {loading && <Loading />}
         <div className="leftpane bg-[#a29eeb] w-[38%] max-sm:hidden max-sm:w-screen flex items-center justify-center">
           <div className="leftpane-content w-[75%] max-sm:w-screen h-screen pt-10 flex flex-col max-sm:items-center gap-8">
             <div className="max-sm:flex max-sm:justify-center max-sm:pt-10">

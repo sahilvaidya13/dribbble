@@ -3,9 +3,13 @@ import designer_svg from "../assets/undraw_art_lover_re_fn8g.svg";
 import inspiration_svg from "../assets/undraw_inspiration_re_ivlv.svg";
 import hire_svg from "../assets/undraw_mobile_prototyping_grmd.svg";
 import tick from "../assets/tick.svg";
+import Loading from "./Loading";
+
 import { useNavigate } from "react-router-dom";
 const Motive = () => {
   const [role, selectedRole] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const handleOption = (event) => {
@@ -19,7 +23,7 @@ const Motive = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const response = await fetch(
         "https://dribbble-uyit.onrender.com/api/add-roles",
@@ -34,11 +38,14 @@ const Motive = () => {
       );
 
       if (response.ok) {
+        setLoading(true);
+
         const data = await response.json();
+        console.log(data.data);
         // Check if roles were successfully added
 
         // Redirect to the mail verification page
-        navigate("/verify-mail");
+        navigate("/verify-mail", { state: data.data });
       } else {
         console.error("Failed to add roles:", response.statusText);
       }
@@ -49,6 +56,8 @@ const Motive = () => {
   return (
     <div>
       <div className="motive-section w-screen h-screen flex flex-col">
+        {loading && <Loading />}
+
         <div className="motive-nav w-full h-16 flex items-center pl-16">
           <div className="font-goodline text-3xl text-[#ea4b8b]">
             <h3>dribbble</h3>

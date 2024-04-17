@@ -78,7 +78,7 @@ exports.addRoles = async (req, res) => {
       .then((result) => {
         if (result) {
           console.log("User roles updated successfully");
-          res.json({ message: "Roles added" });
+          res.json({ message: "Roles added", data: email });
         } else {
           console.log("User not found or no changes made");
         }
@@ -141,7 +141,7 @@ exports.signup = async (req, res) => {
 
 exports.sendMail = async (req, res) => {
   const { email } = req.user;
-
+  console.log("mail", email);
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp.zoho.in",

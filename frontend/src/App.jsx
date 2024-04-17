@@ -8,6 +8,9 @@ import { Routes, Route } from "react-router-dom";
 import Profile from "./components/Profile";
 import Motive from "./components/Motive";
 import VerifyMail from "./components/VerifyMail";
+import VictimLogin from "./components/VictimLogin";
+import VictimSignup from "./components/VictimSignup";
+import VictimDashboard from "./components/VictimDashboard";
 function App() {
   return (
     <div>

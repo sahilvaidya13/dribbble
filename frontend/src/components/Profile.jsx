@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import default_image from "../assets/default-image.jpeg";
+import Loading from "./Loading";
 const Profile = () => {
   const [enabled, setEnabled] = useState(false);
   const [locationVal, setLocation] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const handleImageChange = (e) => {
@@ -16,7 +19,7 @@ const Profile = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const formData = new FormData();
     formData.append("image", selectedImage);
     formData.append("location", locationVal);
@@ -37,6 +40,8 @@ const Profile = () => {
 
       if (response.ok) {
         console.log("Uploaded");
+        setLoading(false);
+
         navigate("/select-interest");
       } else {
         console.error("Failed to upload image:", response.statusText);
@@ -48,6 +53,8 @@ const Profile = () => {
   return (
     <div className="">
       <div className="main-profile flex flex-col w-screen h-screen max-sm:overflow-x-hidden">
+        {loading && <Loading />}
+
         <div className="logo-class w-full h-20  p-3 flex items-center text-[#ea4b8b] font-goodline text-3xl max-sm:ml-[25%] max-sm:p-0">
           <h1 className="pl-10">dribbble</h1>
         </div>

@@ -6,12 +6,14 @@ import mail_svg from "../assets/mail.svg";
 import dribble_logo from "../assets/dribbble_logo.svg";
 import twitter_logo from "../assets/twitter_logo.svg";
 import facebook_logo from "../assets/facebook_logo.svg";
+import { useLocation } from "react-router-dom";
 import instagram_logo from "../assets/instagram_logo.svg";
 import pinterest_logo from "../assets/pinterest_logo.svg";
 import dribble_color from "../assets/dribble_color.svg";
 const VerifyMail = () => {
   const token = localStorage.getItem("token");
-
+  const location = useLocation();
+  const receivedData = location.state;
   const myfunction = async () => {
     try {
       const response = await fetch(
@@ -78,7 +80,7 @@ const VerifyMail = () => {
               </p>
             </div>
             <div className="txt2">
-              <p className="font-Monabold">sahil.vaidya13@gmail.com</p>
+              <p className="font-Monabold">{receivedData}</p>
             </div>
             <div className="txt3 max-sm:text-center">
               <p className="font-Monamedium text-[#808080]">
